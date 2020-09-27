@@ -8,14 +8,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="{% static 'favicon.png' %}">
     <script src="https://kit.fontawesome.com/00cee764ca.js"></script>
-    {% block css %}
-    {% endblock css %}
     <title>{% block title %}{% endblock title %}</title>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet"
           href="{% static 'template.css' %}"
           type="text/css">
+    {% block css %}
+    {% endblock css %}
+    
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>

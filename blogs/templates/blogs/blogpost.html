@@ -1,0 +1,119 @@
+{% extends 'template.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %}
+    {{post.title}} - Blogpost
+{% endblock title %}
+{% load extras %}
+{% block css %}
+<style>
+    @media (max-width: 600px){
+        .card{
+            height: 600px;
+        }
+    }
+    .comments{
+        margin-top: 27px;
+        margin-bottom: 45px;
+        margin-left: 45px;
+        margin-right: 45px;
+        padding: 15px;
+        border: 2px solid grey;
+    }
+
+</style>
+{% endblock css %}
+{% block content %}
+<div class="card news-card">
+            <h3 style="text-decoration: underline">Blog<h3>
+            <h2 class="news-card-title card-title">{{post.title}}</h2>
+            <hr>
+            <p class="mb-1 text-muted">{{post.timestamp}} by <strong class="d-inline-block mb-2 text-primary">{{post.author}}</strong></p>
+            <p class="card-text mb-auto font-weight-normal" >{{post.content}}</p>
+    <hr>
+</div>
+<div class="container-fluid comments">
+    <h2>Comments</h2>({{comments.count}})
+    <div class="my-3">
+            {% if name != 'None' %}
+            <form action="/blogs/postcomment" method="post">{% csrf_token %}
+                    <div class="form-group">
+                            <label for="exampleInputEmail1">Post Comment</label>
+                            <input type="text" class="form-control" name="comment" placeholder="Enter Comment Here">
+                    </div>
+                    <input type="hidden" name="postsno" value="{{post.sno}}">
+                    <input type="hidden" name="parentsno" value="{{comment.sno}}">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <hr>
+            </form>
+            {% else %}
+            <b>Please Log In First To Commnent</b>
+            {% endif %}
+
+    </div>
+    {% for comment in comments %}
+    <div class="no-gutters row my-2">
+            <div class="col-md-1">
+                   <img class="rounded mx-auto d-block p-2 border border-dark" src="{% static 'user.png' %}" style="width:80%">
+            </div>
+            <div class="col-md-11">
+                    <b class="text-primary ml-4"> {{comment.user}} </b> <p class="badge badge-secondary">{{comment.timestamp | naturaltime }}</p>
+                    <hr>
+                    <div class="ml-4">{{comment.comment}}</div><hr>
+                    <div class="reply mx-0 ml-4 mt-2">
+                            {% if name != 'None' %}
+                            <button class="btn btn-primary btn-sm" type="button" data-toggle="collapse"
+                                    data-target="#replybox{{comment.sno}}" aria-expanded="false"
+                                    aria-controls="replybox{{comment.sno}}">
+                                    Reply
+                            </button>
+                            <div class="collapse" id="replybox{{comment.sno}}">
+                                    <div class="card-body my-2">
+                                            <form action="/blogs/postcomment" method="post">{% csrf_token %}
+                                                    <div class="form-group">
+                                                            <label for="exampleInputEmail1">Post a Reply</label>
+                                                            <input type="text" class="form-control" name="comment"
+                                                                    placeholder="Enter Comment Here">
+                                                            <input type="hidden" name="parentsno"
+                                                                    value="{{comment.sno}}">
+                                                    </div>
+                                                    <input type="hidden" name="postsno" value="{{post.sno}}">
+                                                    <button type="submit"
+                                                            class="btn btn-primary btn-sm">Post</button>
+                                            </form>
+                                    </div>
+                            </div>
+                            {% else %}
+                            <button class="btn btn-primary btn-sm" type="button" data-toggle="collapse"
+                                    data-target="#replybox{{comment.sno}}" aria-expanded="false"
+                                    aria-controls="replybox{{comment.sno}}" disabled>
+                                    Reply
+                            </button>
+                            <b>Please Log In First To Reply</b>
+                            {% endif %}
+                            <hr>
+                            <div class="replies  my-2">
+                                    {% for reply in repDict|get_val:comment.sno %}
+                                    <div class="no-gutters row my-2">
+                                            <div class="col-md-1">
+                                                    <img class="rounded mx-auto d-block p-2 border border-dark" src="{% static 'user.png' %}" style="width:80%">
+                                            </div>
+                                            <div class="col-md-11">
+                                                    <b class="text-primary ml-4"></b>Replied by<b class="text-primary"> {{reply.user}} </b>
+                                                    <p class="badge badge-secondary">{{reply.timestamp | naturaltime }}</p>
+                                                    <hr>
+                                                    <div class="ml-4">{{reply.comment}}</div>
+                                            </div>
+                                            <hr>
+                                    </div>
+                                    {% endfor %}
+
+                            </div>
+                    </div>
+            </div>
+    </div>
+    <hr>
+    <hr>
+    {% endfor %}
+</div>
+{% endblock content %}

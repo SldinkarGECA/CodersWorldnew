@@ -13,24 +13,26 @@
 
     </div>
     <br>
-{#    <div class="container">#}
-{#        <div class="text-center">#}
-{#            <div class="row">#}
-{#                {% for category in categories %}#}
-{#                    <div class="col-sm-4 text-center category">#}
-{#                        <div class="card news-card">#}
-{#                            <a href="{{ category.url }}">#}
-{#                                <h4 class="news-card-title card-title text-center">#}
-{#                                    {{ category.title }}</h4>#}
-{#                                <img src="{{ category.urlToImage }}"#}
-{#                                     class="card-img-top"#}
-{#                                     alt="{{ category.title }}"#}
-{#                                     style="width:90%;height:70%;">#}
-{#                            </a>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                {% endfor %}#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
+    <div class="container">
+        <div class="text-center">
+            <div class="row">
+                {% for post in allPosts %}
+                    <div class="col-sm-4 text-center category">
+                        <div class="card news-card">
+                            <a href="{{ category.url }}" style="text-decoration: none">
+                                <strong class="d-inline-block mb-2 text-primary">Article by {{post.author}}</strong>
+                                <h4 class="news-card-title card-title text-center">
+                                    {{post.title}}</h4>
+                                <div class="mb-1 text-muted">{{post.timestamp}}</div>
+                                <p class="card-text mb-auto font-weight-normal text-success" >{{post.content|truncatechars:700}}</p>
+                            </a>
+                            <div class="mt-5">
+                                <a href="/blogs/{{post.slug}}" class="btn btn-warning py-4" role="button">Continue reading</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock content %}

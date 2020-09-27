@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 import homepage.views, news.views, accounts.views, \
@@ -14,8 +14,9 @@ urlpatterns = (
                  name="courses"),
             path("books/", books.views.showBooks,
                  name="books"),
-            path("blogs/", blogs.views.showBlogs,
-                 name="blogs"),
+          #   path("blogs/", blogs.views.showBlogs,
+          #        name="blogs"),
+            path("blogs/", include('blogs.urls')),
             path("register/", accounts.views.register,
                  name="register"),
             path("login/", accounts.views.login,

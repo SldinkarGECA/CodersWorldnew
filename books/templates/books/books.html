@@ -12,24 +12,20 @@
              style="width:100vw;height:20vw" alt="Poster">
     </div>
     <br>
-{#    <div class="container">#}
-{#        <div class="text-center">#}
-{#            <div class="row">#}
-{#                {% for category in categories %}#}
-{#                    <div class="col-sm-4 text-center category">#}
-{#                        <div class="card news-card">#}
-{#                            <a href="{{ category.url }}">#}
-{#                                <h4 class="news-card-title card-title text-center">#}
-{#                                    {{ category.title }}</h4>#}
-{#                                <img src="{{ category.urlToImage }}"#}
-{#                                     class="card-img-top"#}
-{#                                     alt="{{ category.title }}"#}
-{#                                     style="width:90%;height:70%;">#}
-{#                            </a>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                {% endfor %}#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
+    <div class="container">
+        <div class="text-center">
+            <div class="row">
+                {% for book in allBooks %}
+                    <div class="col-sm-4 text-center category">
+                        <div class="card news-card">
+                            <a href="{{ book.url }}">
+                                <h4 class="news-card-title card-title text-center">{{ book.title }}</h4>
+                                <img src="{{ book.urlToImage }} class="card-img-top" alt="{{ book.title }}" style="width:90%;height:70%;">
+                            </a>
+                        </div>
+                   </div>
+             {% endfor %}
+        </div>
+       </div>
+   </div>
 {% endblock content %}
