@@ -1,0 +1,76 @@
+{% extends 'template.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css"
+      href="{% static 'register.css' %}">
+{% endblock css %}
+
+{% block title %}
+Register
+{% endblock title %}
+
+{% block content %}
+<div class="container-fluid text-center">
+    <br>
+    <img src="{% static 'register.png'%}"
+         class="img-responsive bg-2"
+         style="width:100vw;height:20vw" alt="Poster">
+    <br><br>
+    <form action="{% url 'register' %}" method="post">
+        {% csrf_token %}
+        <div class="center">
+            <h1>Register</h1>
+            <p>Please fill in this form to create an
+                account.</p>
+            <hr>
+            {% if success %}
+            <b style="color:green">{{success}}</b>
+            {% endif %}
+            <br>
+            <label for="name"><b>Enter your
+                name:</b></label>
+            <input type="text" placeholder="Enter Name"
+                   name="name" required>
+            {% if username %}
+            <b style="color:red">{{username}}</b>
+            <br>
+            {% endif %}
+            {% if error %}
+            <b style="color:red">{{error}}</b>
+            <br>
+            {% endif %}
+            <label for="username"><b>Choose a Username:</b></label>
+            <input type="text" placeholder="Enter Username"
+                   name="username" required>
+
+            <label for="email"><b>Enter your
+                Email:</b></label>
+            <input type="text" placeholder="Enter Email"
+                   name="email" required>
+
+            <label for="psw"><b>Choose a
+                Password:</b></label>
+            <input type="password"
+                   placeholder="Enter Password" name="psw"
+                   required>
+
+            <label for="psw-repeat"><b>Repeat Password:</b></label>
+            <input type="password"
+                   placeholder="Repeat Password"
+                   name="psw-repeat" required>
+
+            <div class="clearfix">
+                <button type="submit" class="signupbtn">Sign
+                    Up
+                </button>
+            </div>
+
+        </div>
+    </form>
+
+</div>
+<br><br><br>
+
+{% endblock content %}
+

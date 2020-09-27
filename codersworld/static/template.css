@@ -1,0 +1,75 @@
+html,
+body {
+    margin: 0;
+    width: 100%;
+    /* position: fixed; */
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100vw;
+}
+
+.card {
+    height: 450px;
+    padding: 2%;
+    margin: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card:hover {
+    background-color: rgba(200, 0, 0, 0.2);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8);
+}
+
+.card-title {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+body {
+    font: 14px Montserrat, sans-serif;
+    line-height: 1.4;
+    color: #333;
+}
+
+.margin {
+    margin-bottom: 45px;
+}
+
+.bg-1 {
+    height: 40vw;
+    width: 100vw;
+}
+
+.bg-2 {
+    height: 30vw;
+    width: 100vw;
+}
+
+.bg-4 {
+    background-color: #2f2f2f;
+    color: #fff;
+}
+
+.navbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+.navbar-brand {
+    font-size: 25px;
+}
+
+.navbar-nav li a:hover {
+    color: #1abc9c !important;
+}
+
+.container-fluid1 {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}

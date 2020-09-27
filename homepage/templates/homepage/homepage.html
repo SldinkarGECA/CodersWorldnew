@@ -1,0 +1,50 @@
+{% extends 'template.html' %}
+{% load static %}
+{% block title %}
+    Coders World
+{% endblock title %}
+
+{% block content %}
+    <br>
+    <div class="container-fluid  text-center">
+        <img src="{% static 'poster.png' %}"
+             class="img-responsive bg-1"
+             style="width:100vw;height:40vw" alt="Poster">
+
+    </div>
+    <div class="container-fluid text-center">
+        <br>
+        <img src="{% static 'poster2.png' %}"
+             class="img-responsive bg-2"
+             style="width:100vw;height:30vw" alt="Poster">
+
+    </div>
+
+    <div class="container">
+        <br>
+        <div class="text-center">
+            <div class="row">
+                {% for category in categories %}
+                    <div class="col-sm-6 text-center category">
+                        <div class="card homepage-card">
+                            <a href="{% url  category.title %}">
+                                {% comment %}  {% endcomment %}
+                                <h1 class="homepage-card-title card-title">{{ category.title|title }}</h1>
+                                <img src="{{ category.banner.url }}"
+                                     class="card-img-top"
+                                     alt="{{ category.title }}"
+                                     style="width:90%;height:70%;">
+                            </a>
+                            <br><br>
+                            <div class="card-body">
+                                <p class="card-text">{{ category.info }}</p>
+                            </div>
+                            <br><br>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <br><br><br>
+        </div>
+    </div>
+{% endblock content %}

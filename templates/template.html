@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="{% static 'favicon.png' %}">
+    <script src="https://kit.fontawesome.com/00cee764ca.js"></script>
+    {% block css %}
+    {% endblock css %}
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="{% static 'template.css' %}"
+          type="text/css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+{% comment %} nav starts {% endcomment %}
+<nav class="navbar navbar-inverse fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle"
+                    data-toggle="collapse"
+                    data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand"
+               href="{% url 'homepage' %}">
+                <b>
+                    Coders World
+                </b>
+            </a>
+        </div>
+        <div class="collapse navbar-collapse  text-center"
+             id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="{% url 'books' %}"><span
+                            class="fas fa-book"></span>
+                        Books</a>
+                </li>
+                <li>
+                    <a href="{% url 'courses' %}"><span
+                            class="fas fa-chalkboard-teacher"></span>
+                        Courses</a>
+                </li>
+                <li>
+                    <a href="{% url 'blogs' %}"><i
+                            class="fab fa-blogger"></i></span>
+                        Blogs</a>
+                </li>
+                <li>
+                    <a href="{% url 'news' %}"><span
+                            class="fas fa-newspaper"></span>
+                        News</a>
+                </li>
+                {% if name %}
+                    <li>
+                        <a href="{% url 'logout' %}"><span
+                                class="fas fa-sign-out-alt"></span>
+                            {{ name }} </a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{% url 'register' %}"><span
+                                class="fas fa-sign-in-alt"></span>
+                            Register</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'login' %}"><span
+                                class="fas fa-user-plus"></span>
+                            Login</a>
+                    </li>
+                {% endif %}
+                <li>
+                    <a href="{% url 'admin:index' %}"><span
+                            class="fas fa-user-cog"></span>
+                        Admin</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+{% comment %} nav ends {% endcomment %}
+{% comment %} main content of page starts {% endcomment %}
+
+{% block content %}
+{% endblock %}
+
+{% comment %} main content of page ends {% endcomment %}
+
+{% comment %} footer starts {% endcomment %}
+
+<footer class="container-fluid1 bg-4 text-center">
+    <p>Copyright 2020 @ Coders World</p>
+</footer>
+{% comment %} footer ends {% endcomment %}
+
+</body>
+</html>
